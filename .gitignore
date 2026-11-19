@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# ????
+out/
+*.log
+*.out
+
+# ?????? / ????
+*.csv
+*.DAT
+*.parquet
+
+# ??
+*.bak
+*.bak_*
+*.tmp
+
+# ??? / ??
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
