@@ -1,0 +1,29 @@
+
+--- 1st tick, no quotes ---
+[CLIPBUY 21:43:31] [HB #1] waiting 093000-093130
+[CLIPBUY 21:43:31] clipboard payload ok: token=20261124214331 n=3
+[CLIPBUY 21:43:31] skip 000001.SZ: no price
+[CLIPBUY 21:43:31] skip 600000.SH: no price
+[CLIPBUY 21:43:31] skip 300209.SZ: no price
+[CLIPBUY 21:43:31] no tradable code yet (held=0, tries=1)
+token_after='' tries=1
+
+--- 2nd tick, quotes ready ---
+[CLIPBUY 21:43:31] buy 3/3 codes, cash=10000000, token=20261124214331
+[CLIPBUY 21:43:31] [DRY] would buy 000001.SZ 8100 @12.34 (平安银行)
+[CLIPBUY 21:43:31] [DRY] would buy 600000.SH 8100 @12.34 (浦发银行)
+[CLIPBUY 21:43:31] [DRY] would buy 300209.SZ 8100 @12.34 (行云科技)
+[CLIPBUY 21:43:31] token 20261124214331 done: orders=3 all_held=False tries=2
+token_after='20261124214331' tries=2
+
+--- 3rd tick, token already used ---
+token_after='20261124214331' tries=2
+
+--- 4th tick, already held -> done ---
+[CLIPBUY 21:43:31] clipboard payload ok: token=20261124214331 n=3
+[CLIPBUY 21:43:31] skip 000001.SZ: already held
+[CLIPBUY 21:43:31] skip 600000.SH: already held
+[CLIPBUY 21:43:31] skip 300209.SZ: already held
+[CLIPBUY 21:43:31] no tradable code yet (held=3, tries=1)
+[CLIPBUY 21:43:31] token 20261124214331 done: orders=0 all_held=True tries=1
+token_after='20261124214331' tries=1

@@ -1,0 +1,109 @@
+{
+  "time": "2026-11-25 09:25:34",
+  "total_rows": 5565,
+  "attempts": 1,
+  "payload": "QMTCLIP1|20261125092534|002196.SZ,300434.SZ,000593.SZ,002579.SZ,605018.SH,002728.SZ,301569.SZ,688185.SH|F7AEAC79",
+  "picked": [
+    {
+      "code": "002196",
+      "name": "方正电机",
+      "bid": 3.77,
+      "real": 3.77,
+      "warn": 4,
+      "prob": 73,
+      "conf": 82,
+      "score": 45,
+      "mv_yi": 46.5,
+      "open": 9.37
+    },
+    {
+      "code": "300434",
+      "name": "金石亚药",
+      "bid": 3.52,
+      "real": 3.52,
+      "warn": 4,
+      "prob": 73,
+      "conf": 82,
+      "score": 43,
+      "mv_yi": 42.6,
+      "open": 10.6
+    },
+    {
+      "code": "000593",
+      "name": "德龙汇能",
+      "bid": 3.05,
+      "real": 3.05,
+      "warn": 4,
+      "prob": 71,
+      "conf": 82,
+      "score": 39,
+      "mv_yi": 69.0,
+      "open": 19.24
+    },
+    {
+      "code": "002579",
+      "name": "中京电子",
+      "bid": 3.4,
+      "real": 3.4,
+      "warn": 4,
+      "prob": 71,
+      "conf": 82,
+      "score": 42,
+      "mv_yi": 110.5,
+      "open": 16.75
+    },
+    {
+      "code": "605018",
+      "name": "长华集团",
+      "bid": 3.7,
+      "real": 3.7,
+      "warn": 4,
+      "prob": 71,
+      "conf": 82,
+      "score": 44,
+      "mv_yi": 60.5,
+      "open": 12.88
+    },
+    {
+      "code": "002728",
+      "name": "特一药业",
+      "bid": 2.9,
+      "real": 2.9,
+      "warn": 4,
+      "prob": 68,
+      "conf": 82,
+      "score": 38,
+      "mv_yi": 40.1,
+      "open": 7.81
+    },
+    {
+      "code": "301569",
+      "name": "联亚药业",
+      "bid": 3.1,
+      "real": 3.1,
+      "warn": 4,
+      "prob": 68,
+      "conf": 82,
+      "score": 39,
+      "mv_yi": 142.5,
+      "open": 15.98
+    },
+    {
+      "code": "688185",
+      "name": "康希诺",
+      "bid": 2.92,
+      "real": 2.92,
+      "warn": 4,
+      "prob": 63,
+      "conf": 82,
+      "score": 38,
+      "mv_yi": 148.4,
+      "open": 59.9
+    }
+  ],
+  "decision": "pool-8",
+  "t1": 0,
+  "t2": 0,
+  "t3": 0,
+  "coverage": 0.0
+}

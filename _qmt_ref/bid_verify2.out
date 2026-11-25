@@ -1,0 +1,20 @@
+mismatch=5217/5563
+其中市值距阈值<3亿的: 703 (13%)
+--- 差异最大的15条 ---
+300627 华测导航 bid=0.00 warn=3 mv=167.2亿 mine=23 app=31 diff=-8
+001326 联域股份 bid=0.00 warn=3 mv=56.5亿 mine=27 app=35 diff=-8
+688826 频准激光 bid=-2.42 warn=3 mv=224.4亿 mine=23 app=30 diff=-7
+688820 盛合晶微 bid=-3.65 warn=4 mv=1586.5亿 mine=24 app=31 diff=-7
+688819 天能股份 bid=-0.05 warn=0 mv=190.2亿 mine=16 app=23 diff=-7
+688801 燧原科技-U bid=-3.23 warn=4 mv=1699.4亿 mine=24 app=31 diff=-7
+688798 艾为电子 bid=-0.58 warn=0 mv=141.7亿 mine=16 app=23 diff=-7
+688797 臻宝科技 bid=-4.88 warn=4 mv=326.9亿 mine=24 app=31 diff=-7
+688793 倍轻松 bid=-0.68 warn=3 mv=12.8亿 mine=29 app=36 diff=-7
+688788 科思科技 bid=-1.33 warn=4 mv=51.7亿 mine=32 app=39 diff=-7
+688785 恒运昌 bid=-2.47 warn=0 mv=185.7亿 mine=16 app=23 diff=-7
+688783 西安奕材-U bid=-3.55 warn=4 mv=639.2亿 mine=24 app=31 diff=-7
+688779 五矿新能 bid=-0.59 warn=0 mv=135.6亿 mine=16 app=23 diff=-7
+688778 厦钨新能 bid=-1.01 warn=0 mv=207.5亿 mine=16 app=23 diff=-7
+688772 珠海冠宇 bid=-0.52 warn=0 mv=191.0亿 mine=16 app=23 diff=-7
+--- 按 app 概率反推所需市值档 ---
+{60: 47, 30: 279, 120: 14}

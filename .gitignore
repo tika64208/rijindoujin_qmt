@@ -1,26 +1,17 @@
+# 大文件与数据（不入库）
+*.tar
+*.tar.gz
+_data_20261124/
+
+# 行情缓存
+_qmt_ref/sina_cache/
+_qmt_ref/kline_cache/
+
 # Python
 __pycache__/
 *.pyc
 *.pyo
-*.egg-info/
 
-# ????
-out/
+# 日志与临时输出
 *.log
-*.out
-
-# ?????? / ????
-*.csv
-*.DAT
-*.parquet
-
-# ??
-*.bak
-*.bak_*
 *.tmp
-
-# ??? / ??
-.vscode/
-.idea/
-Thumbs.db
-desktop.ini

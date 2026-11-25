@@ -1,0 +1,35 @@
+{
+  "source": "F:\\ai\\deepseekharness\\竞价分析\\export\\竞价数据_2026-11-10.csv",
+  "total_rows": 5563,
+  "selected": 105,
+  "payload": "QMTCLIP1|20261124214449|300400.SZ,300626.SZ,300689.SZ|3EA148C3",
+  "pushed": [
+    {
+      "code": "300400",
+      "name": "劲拓股份",
+      "bid_change": 3.21,
+      "prob": 73,
+      "conf": 82,
+      "score": 40,
+      "mv_yi": 57.2
+    },
+    {
+      "code": "300626",
+      "name": "华瑞股份",
+      "bid_change": 3.27,
+      "prob": 73,
+      "conf": 82,
+      "score": 41,
+      "mv_yi": 46.0
+    },
+    {
+      "code": "300689",
+      "name": "澄天伟业",
+      "bid_change": 3.11,
+      "prob": 73,
+      "conf": 82,
+      "score": 40,
+      "mv_yi": 47.5
+    }
+  ]
+}

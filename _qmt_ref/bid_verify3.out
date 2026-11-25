@@ -1,0 +1,13 @@
+total=5563 ok=5076 (91.2%) mismatch=487
+其中市值距阈值<6%的: 62 / 487 = 13%
+--- 差异与市值档位无关的样本 10 条 ---
+000668 荣丰控股 bid=0.00 warn=4 mv=22.6 mine=42 app=41 diff=1 (距阈值32.7%)
+000790 华神科技 bid=0.00 warn=4 mv=22.5 mine=42 app=41 diff=1 (距阈值33.6%)
+000856 冀东装备 bid=0.00 warn=4 mv=19.3 mine=42 app=41 diff=1 (距阈值55.7%)
+001205 盛航股份 bid=0.00 warn=4 mv=23.5 mine=42 app=41 diff=1 (距阈值27.6%)
+001226 拓山重工 bid=0.00 warn=4 mv=26.9 mine=44 app=41 diff=3 (距阈值11.3%)
+001231 农心科技 bid=0.00 warn=4 mv=18.0 mine=42 app=41 diff=1 (距阈值66.3%)
+002514 *ST宝馨 bid=0.00 warn=4 mv=15.6 mine=42 app=41 diff=1 (距阈值92.0%)
+002682 龙洲股份 bid=0.00 warn=4 mv=25.2 mine=42 app=41 diff=1 (距阈值19.1%)
+002723 小崧股份 bid=0.00 warn=4 mv=21.7 mine=44 app=41 diff=3 (距阈值38.1%)
+002887 绿茵生态 bid=0.00 warn=4 mv=24.4 mine=44 app=41 diff=3 (距阈值22.7%)

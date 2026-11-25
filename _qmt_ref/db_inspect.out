@@ -1,0 +1,53 @@
+started; db exists=True size=311246848
+tables: android_metadata, daily_bars, cache_meta, bid_data, dark_trade_data, room_master_table, wanlong_hits, dark_trade_cache, opening_bid_archive, opening_bid_archive_chunk, bid_signal_snapshot, bid_price_snapshot
+bid_data cols(26): code, date, name, latestPrice, realChange, openPrice, volume, amount, turnover, circMv, bidChange, warnFlag, industry, conceptQuick, probability, confidence, score, bidTurnover, entityChange, warnText, reason, savedAt, excluded, excludeReason, quoteAt, bidVolume
+  android_metadata rows=1
+  daily_bars rows=661919
+  cache_meta rows=1331
+  bid_data rows=205834
+  dark_trade_data rows=127086
+  room_master_table rows=1
+  wanlong_hits rows=323
+  dark_trade_cache rows=11
+  opening_bid_archive rows=4
+  opening_bid_archive_chunk rows=417
+  bid_signal_snapshot rows=222528
+  bid_price_snapshot rows=205834
+bid_data days(37):
+  2026-09-30  5562
+  2026-10-08  5562
+  2026-10-09  5562
+  2026-10-12  5562
+  2026-10-13  5562
+  2026-10-14  5562
+  2026-10-15  5562
+  2026-10-16  5562
+  2026-10-19  5562
+  2026-10-20  5562
+  2026-10-21  5563
+  2026-10-22  5563
+  2026-10-23  5563
+  2026-10-26  5563
+  2026-10-27  5563
+  2026-10-28  5563
+  2026-10-29  5563
+  2026-10-30  5563
+  2026-10-31  5563
+  2026-11-02  5563
+  2026-11-03  5563
+  2026-11-04  5563
+  2026-11-05  5563
+  2026-11-06  5563
+  2026-11-08  5563
+  2026-11-09  5563
+  2026-11-10  5563
+  2026-11-11  5563
+  2026-11-12  5563
+  2026-11-13  5564
+  2026-11-16  5564
+  2026-11-17  5564
+  2026-11-18  5565
+  2026-11-19  5565
+  2026-11-20  5565
+  2026-11-23  5565
+  2026-11-24  5565

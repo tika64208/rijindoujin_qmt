@@ -1,0 +1,17 @@
+
+--- two positions, partly available (dry=True) ---
+[CLIPBUY 22:30:09] sell: 1 positions, total avail=600
+[CLIPBUY 22:30:09] [DRY] would sell 000001.SZ 600 shares (holding 1000)
+sold_count=1 passorder_calls=0
+
+--- two positions, real orders (dry=False) ---
+[CLIPBUY 22:30:09] sell: 2 positions, total avail=900
+[CLIPBUY 22:30:09] ORDER SELL clip sell 000001.SZ 600
+[CLIPBUY 22:30:09] ORDER SELL clip sell 600000.SH 300
+sold_count=2 passorder_calls=2
+  call: (24, 1101, '63009312', '000001.SZ', 5, -1, 600, 'jingjiasell', 1, 'clip sell 000001.SZ 600', None)
+  call: (24, 1101, '63009312', '600000.SH', 5, -1, 300, 'jingjiasell', 1, 'clip sell 600000.SH 300', None)
+
+--- no position (dry=False) ---
+[CLIPBUY 22:30:09] sell: no sellable position
+sold_count=0 passorder_calls=0

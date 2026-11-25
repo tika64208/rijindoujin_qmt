@@ -1,0 +1,11 @@
+daily_bars rows=661919 symbols=1331 range=2021-10-08..2026-11-20
+most bars: [('sh688787', 1243), ('sh688682', 1240), ('sh688686', 1240)]
+fewest bars: [('bj920007', 1), ('bj920489', 1), ('bj920924', 1)]
+sample: [('sh688787', '2026-11-20', 85.1, 94.88, 82.02, 86.5, 6933349.0), ('sh688787', '2026-11-19', 91.1, 91.89, 86.5, 87.31, 4395432.0)]
+report keys: generatedAt, result, notes, skipped, includeUnverified, definitionVersion
+  generatedAt = 1795503662400
+  result = {'initialCapital': 1000000, 'currentCapital': 1068354.528145903, 'cash': 1068354.528145903, 'totalProfit': 68354.52814590302, 'totalReturnPct': 6.83545281459030
+  notes = {'2026-09-30': '早盘原始输入未验证，仅沿用存盘评分；未确认收盘价', '2026-10-08': '早盘原始输入未验证，仅沿用存盘评分；未确认收盘价', '2026-10-09': '早盘原始输入未验证，仅沿用存盘评分；未确认收盘价', '2026-10-12': '早盘原始输入未验证，仅沿用存盘评分；
+  skipped = {'2026-10-31': '非工作日数据不参与模拟回测', '2026-11-08': '非工作日数据不参与模拟回测'}
+  includeUnverified = True
+  definitionVersion = stored-signal-unified-v1

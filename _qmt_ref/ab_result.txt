@@ -1,0 +1,28 @@
+days=35 records=738 fetch_fail=0
+
+[全部候选]
+all                      n=738  avg=-0.43% med=-1.12% win=43%
+
+[形态分层]
+T1 涨停+回踩+突破              n=13   avg=+3.69% med=+5.53% win=62%
+T2 突破(无涨停)               n=60   avg=+0.24% med=+0.46% win=55%
+T3 其他                    n=665  avg=-0.57% med=-1.34% win=41%
+
+[单条件]
+自选:近10日涨停                n=123  avg=+0.17% med=-1.34% win=46%
+自选:D-1刚上穿                n=53   avg=+0.08% med=-0.72% win=47%
+自选:涨停+刚上穿                n=24   avg=-2.45% med=-2.65% win=38%
+
+[每日取前N(按评分)]
+top3 by score            n=90   avg=+0.80% med=+0.07% win=50%
+top5 by score            n=143  avg=+0.07% med=-0.50% win=48%
+top10 by score           n=256  avg=-0.79% med=-1.51% win=42%
+
+[按当天候选数分组]
+N<=5                     n=23   avg=+3.90% med=+3.38% win=70%
+6-20                     n=156  avg=-1.47% med=-2.34% win=38%
+21-60                    n=178  avg=-1.93% med=-2.64% win=29%
+>60                      n=381  avg=+0.43% med=+0.00% win=49%
+
+[同口径参考：D 开盘→D 收盘]
+same-day avg=-0.37% win=39%

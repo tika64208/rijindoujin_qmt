@@ -1,0 +1,8 @@
+daily_bars cols: symbol, date, open, high, low, close, volume
+daily_bars stats ERR no such column: code
+2026-11-18 -> 5565 rows
+2026-11-19 -> 5565 rows
+2026-11-20 -> 5565 rows
+2026-11-23 -> 5565 rows
+2026-11-24 -> 5565 rows
+exported 37 days, 205834 rows -> F:\ai\deepseekharness\国金证券模拟账号\_data_20261124\export

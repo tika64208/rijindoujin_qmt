@@ -1,0 +1,18 @@
+2026-09-30 000993 ret= +5.53% bench= -3.02% excess= +8.56%
+2026-09-30 605577 ret= -4.10% bench= -3.02% excess= -1.08%
+2026-09-30 300931 ret= +5.60% bench= -3.02% excess= +8.62%
+2026-09-30 600770 ret= -5.04% bench= -3.02% excess= -2.02%
+2026-10-08 002172 ret= +5.72% bench= -2.06% excess= +7.79%
+2026-10-26 688004 ret= -5.51% bench= -3.86% excess= -1.66%
+2026-10-27 002347 ret= -0.30% bench= -1.30% excess= +1.00%
+2026-11-05 002150 ret= -1.65% bench= +0.67% excess= -2.32%
+2026-11-09 002172 ret= +9.90% bench= -0.01% excess= +9.91%
+2026-11-09 603901 ret=+12.70% bench= -0.01% excess=+12.72%
+2026-11-09 002249 ret= +4.12% bench= -0.01% excess= +4.13%
+2026-11-10 300291 ret=+13.08% bench= +1.20% excess=+11.88%
+2026-11-13 001258 ret= +7.87% bench= -5.94% excess=+13.81%
+
+T1 excess vs CSI1000       n=13  excess_mean=+5.49% t=3.27 win=69%
+T1 excl 11-09/11-10        n=9   excess_mean=+3.63% t=1.80 win=56%
+T1 excl 11-05              n=12  excess_mean=+6.14% t=3.65 win=75%
+T1 excl rally raw: n=9 mean=+0.90% t=0.51
