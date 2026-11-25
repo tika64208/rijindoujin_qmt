@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-25e'
+STRAT_VERSION = '2026-11-25f'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -31,7 +31,8 @@ GAP_MAX   = 0.05           # buy limit = prev_close*(1+GAP_MAX), capped by up-li
 MAX_BUY   = 5
 TAG       = 'jingjia'
 TAG_SELL  = 'jingjiasell'
-DRY_RUN   = True
+DRY_RUN   = True           # True: buy is simulated only
+DRY_SELL  = False          # False: sell real positions when the sell window opens
 TEST_ANYTIME = False
 ACC_BT    = 'testS'
 BIG_REPEAT = 2000000
@@ -447,7 +448,7 @@ def _sell(ctx):
         else:
             mode, price = 5, -1
         msg = 'clip sell %s %d @%s' % (code, avail, ('%.2f' % price) if mode == 11 else 'last')
-        if DRY_RUN:
+        if DRY_SELL:
             _log('[DRY] would sell %s %d shares (holding %d)' % (code, avail, vol))
             n += 1
             continue
@@ -535,9 +536,9 @@ def init(C):
         A.acct = account
     except Exception:
         pass
-    _log('init v%s | buy %s-%s | sell %s-%s | per-stock %.0f | max %d | gap %.1f%% | dry_run=%s | acct=%s'
+    _log('init v%s | buy %s-%s | sell %s-%s | per-stock %.0f | max %d | gap %.1f%% | dry_buy=%s dry_sell=%s | acct=%s'
          % (STRAT_VERSION, WIN_START, WIN_END, SELL_START, SELL_END,
-            AMOUNT, MAX_BUY, GAP_MAX * 100.0, DRY_RUN, A.acct))
+            AMOUNT, MAX_BUY, GAP_MAX * 100.0, DRY_RUN, DRY_SELL, A.acct))
     try:
         pos = _positions()
         _log('positions now: %d (%s)' % (len(pos), ','.join(p[0] for p in pos[:5])))
