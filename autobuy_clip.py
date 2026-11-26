@@ -19,16 +19,16 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-25f'
+STRAT_VERSION = '2026-11-26a'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
 SELL_START = '145000'
 SELL_END   = '145630'
-AMOUNT    = 100000
+AMOUNT    = 10000
 FIXED_VOL = 0
 GAP_MAX   = 0.05           # buy limit = prev_close*(1+GAP_MAX), capped by up-limit
-MAX_BUY   = 5
+MAX_BUY   = 10
 TAG       = 'jingjia'
 TAG_SELL  = 'jingjiasell'
 DRY_RUN   = True           # True: buy is simulated only
