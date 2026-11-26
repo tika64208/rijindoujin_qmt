@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-26b'
+STRAT_VERSION = '2026-11-26c'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -187,7 +187,7 @@ def _bar_price(ctx, code, verbose=False):
 
 def _prev_close(ctx, code):
     """last completed daily bar close (today's bar is dropped by _load_bars)"""
-    bars = _load_bars(ctx, [code], 40)
+    bars = _load_bars(ctx, [code], 80)
     b = bars.get(code)
     if not b or len(b[0]) < 2:
         return 0.0
@@ -558,6 +558,10 @@ def init(C):
     try:
         pos = _positions()
         _log('positions now: %d (%s)' % (len(pos), ','.join(p[0] for p in pos[:5])))
+        if pos:
+            c0 = pos[0][0]
+            p0 = _prev_close(C, c0)
+            _log('prev-close probe: %s prev=%.2f %s' % (c0, p0, 'OK' if p0 > 0 else 'BROKEN'))
     except Exception as e:
         _log('position probe failed: %s' % e)
     try:
