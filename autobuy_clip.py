@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-26a'
+STRAT_VERSION = '2026-11-26b'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -38,7 +38,7 @@ ACC_BT    = 'testS'
 BIG_REPEAT = 2000000
 HB_EVERY  = 60
 RETRY_EVERY = 2.0
-T1_GATE   = True           # True: only buy the T1 pattern (limit-up -> pullback -> breakout)
+T1_FIRST  = True           # True: sort T1 (limit-up -> pullback -> breakout) to the front, rest still bought
 SCAN_COUNT = 200          # daily bars used by the T1 scanner
 
 
@@ -340,6 +340,21 @@ def _load_bars(ctx, codes, count=SCAN_COUNT):
     return out
 
 
+def _tier_map(ctx, codes, verbose=True):
+    """code -> tier (1=T1 2=T2 3=T3 0=no data)"""
+    bars = _load_bars(ctx, codes)
+    tiers = {}
+    for c in codes:
+        b = bars.get(c)
+        tiers[c] = _tier(c, b[0], b[1], b[2]) if b else 0
+    if verbose:
+        n1 = sum(1 for v in tiers.values() if v == 1)
+        n2 = sum(1 for v in tiers.values() if v == 2)
+        _log('T1 scan: bars %d/%d, T1=%d T2=%d' % (len(bars), len(codes), n1, n2))
+    if not bars and codes:
+        _log('T1 scan: no daily bars at all (md api?)')
+    return tiers, bars
+
 def _t1_filter(ctx, codes, verbose=True):
     bars = _load_bars(ctx, codes)
     t1 = []
@@ -361,15 +376,16 @@ def _t1_filter(ctx, codes, verbose=True):
 # ------------------------------------------------------------------ buy
 
 def _buy(ctx, token, codes, verbose=True):
-    if T1_GATE:
-        t1, bars = _t1_filter(ctx, codes, verbose)
+    if T1_FIRST:
+        tiers, bars = _tier_map(ctx, codes, verbose)
         if not bars:
-            _log('T1 gate: no daily data, fall back to payload (fail-open)')
-        elif not t1:
-            _log('T1 gate: no match today -> skip buying')
-            return 0, True, 'no_T1'
+            _log('T1 priority: no daily data, keep auction order')
         else:
-            codes = t1
+            t1s = [c for c in codes if tiers.get(c) == 1]
+            rest = [c for c in codes if tiers.get(c) != 1]
+            codes = t1s + rest
+            _log('T1 priority: T1=%d [%s] pool=%d, buy up to %d'
+                 % (len(t1s), ','.join(t1s[:6]) or '-', len(codes), MAX_BUY))
 
     held = _held_codes()
     plan = []
@@ -536,9 +552,9 @@ def init(C):
         A.acct = account
     except Exception:
         pass
-    _log('init v%s | buy %s-%s | sell %s-%s | per-stock %.0f | max %d | gap %.1f%% | dry_buy=%s dry_sell=%s | acct=%s'
+    _log('init v%s | buy %s-%s | sell %s-%s | per-stock %.0f | max %d | t1_first=%s | gap %.1f%% | dry_buy=%s dry_sell=%s | acct=%s'
          % (STRAT_VERSION, WIN_START, WIN_END, SELL_START, SELL_END,
-            AMOUNT, MAX_BUY, GAP_MAX * 100.0, DRY_RUN, DRY_SELL, A.acct))
+            AMOUNT, MAX_BUY, T1_FIRST, GAP_MAX * 100.0, DRY_RUN, DRY_SELL, A.acct))
     try:
         pos = _positions()
         _log('positions now: %d (%s)' % (len(pos), ','.join(p[0] for p in pos[:5])))
