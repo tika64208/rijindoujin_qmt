@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-26c'
+STRAT_VERSION = '2026-11-26d'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -31,7 +31,7 @@ GAP_MAX   = 0.05           # buy limit = prev_close*(1+GAP_MAX), capped by up-li
 MAX_BUY   = 10
 TAG       = 'jingjia'
 TAG_SELL  = 'jingjiasell'
-DRY_RUN   = True           # True: buy is simulated only
+DRY_RUN   = False          # False: real orders
 DRY_SELL  = False          # False: sell real positions when the sell window opens
 TEST_ANYTIME = False
 ACC_BT    = 'testS'
