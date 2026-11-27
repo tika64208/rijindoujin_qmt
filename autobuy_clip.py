@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-27f'
+STRAT_VERSION = '2026-11-27g'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092632'
 WIN_END   = '093130'
@@ -548,6 +548,11 @@ def _tick(ctx):
         # ---- morning: buy from clipboard
         if A.token:
             return
+        if now.weekday() >= 5:
+            if A.weekend_note != now.strftime('%Y%m%d'):
+                A.weekend_note = now.strftime('%Y%m%d')
+                _log('weekend: no trading, skip buying')
+            return
         if not TEST_ANYTIME and (hm < WIN_START or hm > WIN_END):
             return
 
@@ -593,6 +598,7 @@ def init(C):
     A.tries = 0
     A.sold_date = ''
     A.last_sell_try = 0.0
+    A.weekend_note = ''
     A.acct = ACC_BT
     try:
         A.acct = account

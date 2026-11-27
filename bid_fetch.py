@@ -230,6 +230,10 @@ def main():
             print('[fetch] %s 启动，等 %.0f 秒到 09:25:00 再抓' % (_hm(), gap))
             time.sleep(gap)
 
+    if datetime.datetime.now().weekday() >= 5:
+        print('[fetch] 周末不交易，直接退出')
+        return 0
+
     attempts = 0
     rows, picked, total, stats = [], [], 0, {}
     deadline = args.retry_until
