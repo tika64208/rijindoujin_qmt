@@ -217,7 +217,7 @@ def main():
     ap.add_argument('--watch', action='store_true')
     ap.add_argument('--until', default='093130')
     ap.add_argument('--retry-until', default='092830')
-    ap.add_argument('--settle-until', default='092512', help='这个时间之前即使有结果也重抓一次')
+    ap.add_argument('--settle-until', default='092630', help='这个时间之前即使有结果也重抓一次')
     ap.add_argument('--min-coverage', type=float, default=0.90, help='开盘价回填比例低于此值就重抓')
     ap.add_argument('--every', type=float, default=10.0)
     args = ap.parse_args()
