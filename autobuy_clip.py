@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-27g'
+STRAT_VERSION = '2026-11-27h'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092632'
 WIN_END   = '093130'
@@ -222,7 +222,7 @@ def _bar_price(ctx, code, verbose=False):
 
 def _prev_close(ctx, code):
     """last completed daily bar close (today's bar is dropped by _load_bars)"""
-    bars = _load_bars(ctx, [code], 80)
+    bars = _load_bars(ctx, [code], 80, min_bars=2)
     b = bars.get(code)
     if not b or len(b[0]) < 2:
         return 0.0
@@ -345,7 +345,7 @@ def _tier(code, closes, highs, lows):
     return 3
 
 
-def _load_bars(ctx, codes, count=SCAN_COUNT):
+def _load_bars(ctx, codes, count=SCAN_COUNT, min_bars=40):
     out = {}
     try:
         d = ctx.get_market_data_ex(['close', 'high', 'low'], list(codes),
@@ -370,7 +370,7 @@ def _load_bars(ctx, codes, count=SCAN_COUNT):
             continue
         if idx and today in idx[-1].replace('-', ''):
             closes, highs, lows = closes[:-1], highs[:-1], lows[:-1]
-        if len(closes) >= 40:
+        if len(closes) >= min_bars:
             out[c] = (closes, highs, lows)
     return out
 
