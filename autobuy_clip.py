@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-27c'
+STRAT_VERSION = '2026-11-27d'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -163,6 +163,28 @@ def _positions():
 def _held_codes():
     return set(c for c, a, v in _positions())
 
+
+def _snap(tag):
+    """log one line per held position: pos: CODE qty cost"""
+    try:
+        ps = get_trade_detail_data(A.acct, 'STOCK', 'POSITION') or []
+    except Exception as e:
+        _log('snap failed: %s' % e)
+        return 0
+    n = 0
+    for p in ps:
+        try:
+            code6 = getattr(p, 'm_strInstrumentID', '') or ''
+            mk = getattr(p, 'm_strExchangeID', '') or ''
+            vol = int(getattr(p, 'm_nVolume', 0) or 0)
+            cost = float(getattr(p, 'm_dOpenPrice', 0) or 0)
+            if code6 and mk and vol > 0:
+                _log('pos: %s.%s %d %.3f' % (code6, mk, vol, cost))
+                n += 1
+        except Exception:
+            continue
+    _log('snap %s: %d positions' % (tag, n))
+    return n
 
 def _cash():
     try:
@@ -521,6 +543,7 @@ def _tick(ctx):
                 else:
                     n = _sell(ctx)
                     _log('sell pass: submitted=%d, avail_before=%d' % (n, avail))
+                    _snap('after-sell')
 
         # ---- morning: buy from clipboard
         if A.token:
@@ -581,6 +604,7 @@ def init(C):
     try:
         pos = _positions()
         _log('positions now: %d (%s)' % (len(pos), ','.join(p[0] for p in pos[:5])))
+        _snap('init')
         if pos:
             c0 = pos[0][0]
             p0 = _prev_close(C, c0)
