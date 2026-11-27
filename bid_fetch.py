@@ -119,6 +119,29 @@ def audit(rows, picked, payload, attempts, total, extra=None):
         return None
 
 
+def save_snapshot(rows, cands):
+    """把当次全量快照落盘，供盘后复盘（选股结果不可精确复现，必须留原始数据）"""
+    try:
+        if not os.path.isdir(AUDIT_DIR):
+            os.makedirs(AUDIT_DIR)
+        tag = datetime.datetime.now().strftime('%Y%m%d')
+        out = os.path.join(AUDIT_DIR, 'snap_%s.csv' % tag)
+        picked = set(c['code'] for c in cands)
+        with io.open(out, 'w', encoding='utf-8-sig', newline='') as fh:
+            fh.write('code,name,bid_change,real_change,open,prob,conf,score,mv_yi,'
+                     'warn,selected\n')
+            for r in rows:
+                fh.write('%s,%s,%.2f,%.2f,%.2f,%d,%d,%d,%.1f,%s,%d\n'
+                         % (r['code'], r['name'], r['bid_change'], r['real_change'],
+                            r['open'], r['prob'], r['conf'], r['score'], r['mv_yi'],
+                            r['warn'], 1 if r['code'] in picked else 0))
+        print('[fetch] 快照已存: %s (%d 行)' % (out, len(rows)))
+        return out
+    except Exception as e:
+        print('[fetch] 快照写入失败: %s' % e)
+        return None
+
+
 def _hm():
     return datetime.datetime.now().strftime('%H%M%S')
 
@@ -189,6 +212,8 @@ def main():
     ap.add_argument('--workers', type=int, default=6, help='并发拉日线的线程数')
     ap.add_argument('--dry', action='store_true')
     ap.add_argument('--once', action='store_true')
+    ap.add_argument('--no-snapshot', dest='snapshot', action='store_false', help='不保存全量快照')
+    ap.set_defaults(snapshot=True)
     ap.add_argument('--watch', action='store_true')
     ap.add_argument('--until', default='093130')
     ap.add_argument('--retry-until', default='092830')
@@ -213,6 +238,8 @@ def main():
             text = fetch_json()
             rows, total = to_rows(text)
             cands = R.select(rows)
+            if args.snapshot:
+                save_snapshot(rows, cands)
             print('[fetch] 第%d次：%s 行 -> 竞价入选 %d 只'
                   % (attempts, total or len(rows), len(cands)))
 
