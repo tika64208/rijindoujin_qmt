@@ -218,6 +218,7 @@ def main():
     ap.add_argument('--until', default='093130')
     ap.add_argument('--retry-until', default='092830')
     ap.add_argument('--settle-until', default='092512', help='这个时间之前即使有结果也重抓一次')
+    ap.add_argument('--min-coverage', type=float, default=0.90, help='开盘价回填比例低于此值就重抓')
     ap.add_argument('--every', type=float, default=10.0)
     args = ap.parse_args()
 
@@ -241,8 +242,15 @@ def main():
             cands = R.select(rows)
             if args.snapshot:
                 save_snapshot(rows, cands)
-            print('[fetch] 第%d次：%s 行 -> 竞价入选 %d 只'
-                  % (attempts, total or len(rows), len(cands)))
+            filled = sum(1 for r in rows if r['open'] > 0)
+            cover = (filled / float(len(rows))) if rows else 0.0
+            print('[fetch] 第%d次：%s 行（开盘价已回填 %.1f%%）-> 竞价入选 %d 只'
+                  % (attempts, total or len(rows), cover * 100, len(cands)))
+            if cover < args.min_coverage and _hm() < args.retry_until:
+                print('[fetch] 快照还没回填完整（<%.0f%%），%.0f 秒后重抓'
+                      % (args.min_coverage * 100, args.every))
+                time.sleep(args.every)
+                continue
 
             # 形态闸门放在 QMT 策略里（本地日线、不走网络，见 v2026-11-24d）；
             # 这里按竞价评分顺序推前 N 只，策略自己筛 T1，没有 T1 就空仓。
