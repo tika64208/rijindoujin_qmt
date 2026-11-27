@@ -217,6 +217,7 @@ def main():
     ap.add_argument('--watch', action='store_true')
     ap.add_argument('--until', default='093130')
     ap.add_argument('--retry-until', default='092830')
+    ap.add_argument('--settle-until', default='092512', help='这个时间之前即使有结果也重抓一次')
     ap.add_argument('--every', type=float, default=10.0)
     args = ap.parse_args()
 
@@ -250,6 +251,18 @@ def main():
             gate_note = 'pool-%d' % len(picked)
             print('[fetch] 推 %d 只候选（评分降序），T1 闸门由 QMT 策略判定' % len(picked))
             _show([(r, {}) for r in picked], min(5, len(picked)))
+
+            # 09:25:00 刚过时东财快照往往只落定一部分（我们 11-27 就只拿到 8 只，
+            # 10 秒后同一接口能给出 18 只）。这里强制等到 settle_until 再抓一次。
+            if picked and _hm() < args.settle_until:
+                target = datetime.datetime.now().replace(
+                    hour=int(args.settle_until[:2]), minute=int(args.settle_until[2:4]),
+                    second=int(args.settle_until[4:6]), microsecond=0)
+                gap = (target - datetime.datetime.now()).total_seconds()
+                if gap > 0:
+                    print('[fetch] 本轮命中 %d 只，但数据可能未落定，等 %.0f 秒重抓' % (len(picked), gap))
+                    time.sleep(gap)
+                    continue
 
             if picked:
                 print(R.fmt_table(picked))
