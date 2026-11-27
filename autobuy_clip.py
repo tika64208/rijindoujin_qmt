@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-26d'
+STRAT_VERSION = '2026-11-27a'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -376,6 +376,7 @@ def _t1_filter(ctx, codes, verbose=True):
 # ------------------------------------------------------------------ buy
 
 def _buy(ctx, token, codes, verbose=True):
+    bars = {}
     if T1_FIRST:
         tiers, bars = _tier_map(ctx, codes, verbose)
         if not bars:
@@ -394,7 +395,10 @@ def _buy(ctx, token, codes, verbose=True):
             if verbose:
                 _log('skip %s: already held' % code)
             continue
-        prev = _prev_close(ctx, code)
+        if code in bars:
+            prev = float(bars[code][0][-1])
+        else:
+            prev = _prev_close(ctx, code)
         if prev <= 0:
             _log('skip %s: no prev close' % code)
             continue
