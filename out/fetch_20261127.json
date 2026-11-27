@@ -1,0 +1,109 @@
+{
+  "time": "2026-11-27 09:25:01",
+  "total_rows": 5565,
+  "attempts": 1,
+  "payload": "QMTCLIP1|20261127092501|002298.SZ,002403.SZ,603960.SH,000017.SZ,001337.SZ,688343.SH,002077.SZ,000062.SZ|04D05BD4",
+  "picked": [
+    {
+      "code": "002298",
+      "name": "中电鑫龙",
+      "bid": 3.55,
+      "real": 3.55,
+      "warn": 4,
+      "prob": 73,
+      "conf": 82,
+      "score": 43,
+      "mv_yi": 54.0,
+      "open": 7.3
+    },
+    {
+      "code": "002403",
+      "name": "爱仕达",
+      "bid": 3.33,
+      "real": 3.33,
+      "warn": 4,
+      "prob": 73,
+      "conf": 82,
+      "score": 41,
+      "mv_yi": 31.7,
+      "open": 9.32
+    },
+    {
+      "code": "603960",
+      "name": "克来机电",
+      "bid": 3.18,
+      "real": 3.18,
+      "warn": 4,
+      "prob": 73,
+      "conf": 82,
+      "score": 40,
+      "mv_yi": 55.3,
+      "open": 21.11
+    },
+    {
+      "code": "000017",
+      "name": "深中华A",
+      "bid": 2.56,
+      "real": 2.56,
+      "warn": 4,
+      "prob": 68,
+      "conf": 82,
+      "score": 35,
+      "mv_yi": 35.8,
+      "open": 5.2
+    },
+    {
+      "code": "001337",
+      "name": "四川黄金",
+      "bid": 3.39,
+      "real": 3.39,
+      "warn": 4,
+      "prob": 68,
+      "conf": 82,
+      "score": 42,
+      "mv_yi": 138.5,
+      "open": 32.98
+    },
+    {
+      "code": "688343",
+      "name": "云天励飞-U",
+      "bid": 3.18,
+      "real": 3.18,
+      "warn": 4,
+      "prob": 68,
+      "conf": 82,
+      "score": 40,
+      "mv_yi": 166.4,
+      "open": 45.71
+    },
+    {
+      "code": "002077",
+      "name": "大港股份",
+      "bid": 2.81,
+      "real": 2.81,
+      "warn": 4,
+      "prob": 65,
+      "conf": 82,
+      "score": 37,
+      "mv_yi": 76.3,
+      "open": 13.15
+    },
+    {
+      "code": "000062",
+      "name": "深圳华强",
+      "bid": 2.51,
+      "real": 2.51,
+      "warn": 4,
+      "prob": 63,
+      "conf": 82,
+      "score": 35,
+      "mv_yi": 179.4,
+      "open": 17.15
+    }
+  ],
+  "decision": "pool-8",
+  "t1": 0,
+  "t2": 0,
+  "t3": 0,
+  "coverage": 0.0
+}

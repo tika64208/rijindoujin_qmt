@@ -19,7 +19,7 @@
 import datetime
 
 
-STRAT_VERSION = '2026-11-27a'
+STRAT_VERSION = '2026-11-27c'
 MAGIC     = 'QMTCLIP1'
 WIN_START = '092505'
 WIN_END   = '093130'
@@ -38,6 +38,7 @@ ACC_BT    = 'testS'
 BIG_REPEAT = 2000000
 HB_EVERY  = 60
 RETRY_EVERY = 2.0
+SELL_EVERY  = 15.0          # retry interval inside the sell window
 T1_FIRST  = True           # True: sort T1 (limit-up -> pullback -> breakout) to the front, rest still bought
 SCAN_COUNT = 200          # daily bars used by the T1 scanner
 
@@ -161,6 +162,18 @@ def _positions():
 
 def _held_codes():
     return set(c for c, a, v in _positions())
+
+
+def _cash():
+    try:
+        accs = get_trade_detail_data(A.acct, 'STOCK', 'ACCOUNT') or []
+        for a in accs:
+            v = getattr(a, 'm_dAvailable', None)
+            if v is not None:
+                return float(v)
+    except Exception as e:
+        _log('cash query failed: %s' % e)
+    return 0.0
 
 
 
@@ -462,9 +475,7 @@ def _sell(ctx):
     for code, avail, vol in pos:
         prev = _prev_close(ctx, code)
         if prev > 0:
-            down = _limit_down(code, prev)
-            px = max(down, round(prev * 0.95 + 1e-6, 2))
-            mode, price = 11, px
+            mode, price = 11, _limit_down(code, prev)
         else:
             mode, price = 5, -1
         msg = 'clip sell %s %d @%s' % (code, avail, ('%.2f' % price) if mode == 11 else 'last')
@@ -499,10 +510,17 @@ def _tick(ctx):
                     ('sell-window' if (SELL_START <= hm <= SELL_END) else 'idle'),
                     A.token or '-', A.sold_date or '-'))
 
-        # ---- afternoon: sell all sellable positions, once per day
+        # ---- afternoon: sell all sellable positions; retry while shares stay unlocked
         if SELL_START <= hm <= SELL_END and A.sold_date != now.strftime('%Y%m%d'):
-            A.sold_date = now.strftime('%Y%m%d')
-            _sell(ctx)
+            if now.timestamp() - A.last_sell_try >= SELL_EVERY:
+                A.last_sell_try = now.timestamp()
+                avail = sum(p[1] for p in _positions())
+                if avail <= 0:
+                    A.sold_date = now.strftime('%Y%m%d')
+                    _log('sell: nothing sellable, day closed')
+                else:
+                    n = _sell(ctx)
+                    _log('sell pass: submitted=%d, avail_before=%d' % (n, avail))
 
         # ---- morning: buy from clipboard
         if A.token:
@@ -551,6 +569,7 @@ def init(C):
     A.last_try = 0.0
     A.tries = 0
     A.sold_date = ''
+    A.last_sell_try = 0.0
     A.acct = ACC_BT
     try:
         A.acct = account
